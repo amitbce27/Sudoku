@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'jetty'
+apply plugin: 'idea'
+apply plugin: 'war'
+
+version = '1.0'
+group = 'com.cxps'
+jettyRun.contextPath = '/CxpsChat'
+repositories {
+  mavenCentral()
+  // mavenRepo urls: "http://repository.jboss.org/nexus/content/groups/public/"
+  // mavenRepo urls: "https://oss.sonatype.org/content/repositories/sourceforge-releases/"
+}
+
+dependencies {
+  compile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.1.0.Final'
+  compile group: 'org.jboss.resteasy', name: 'resteasy-jettison-provider', version: '3.1.0.Final'
+  compile 'javax.servlet:servlet-api:2.5'
+}
