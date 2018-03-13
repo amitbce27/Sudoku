@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="ServerChat_main" target="1.8" />
       <module name="ServerChat_test" target="1.8" />
+      <module name="Sudoku_main" target="1.8" />
+      <module name="Sudoku_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

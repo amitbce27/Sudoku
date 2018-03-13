@@ -1,10 +1,14 @@
 package sudoku;
+import org.codehaus.jettison.json.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,24 +34,22 @@ public class Sudoku extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<h1>" + message + "</h1>");
 
-        int matrix[][] ={
-                {3, 0, 6, 5, 0, 8, 4, 0, 0},
-                {5, 2, 0, 0, 0, 0, 0, 0, 0},
-                {0, 8, 7, 0, 0, 0, 0, 3, 1},
-                {0, 0, 3, 0, 1, 0, 0, 8, 0},
-                {9, 0, 0, 8, 6, 3, 0, 0, 5},
-                {0, 5, 0, 0, 9, 0, 6, 0, 0},
-                {1, 3, 0, 0, 0, 0, 2, 5, 0},
-                {0, 0, 0, 0, 0, 0, 0, 7, 4},
-                {0, 0, 5, 2, 0, 6, 3, 0, 0}
-        };
+        SudokuGenerator generator = new SudokuGenerator(9,20);
+        int matrix[][] = generator.fillValues();
+        System.out.println("Generated Matrix::");
+        generator.printSudoku();
+
+        List<List<String>> sudokuMatrix = new ArrayList<List<String>>();
+        for(int i=0;i<9;i++){
+            List<String> rows = new ArrayList<>();
+            for (int j=0;j<9;j++){
+                rows.add(String.valueOf(matrix[i][j]));
+            }
+            sudokuMatrix.add(rows);
+        }
+
         Sudoku s = new Sudoku();
         s.solve(matrix);
-        System.out.println("babauaaaaaaaaaaaaaaaaaa");
-    }
-
-    public void destroy() {
-        // do nothing.
     }
 
     public boolean chkRow(int x , int i ,int[][] matrix ){
@@ -124,10 +126,25 @@ public class Sudoku extends HttpServlet {
         }
     }
 
-
-
     public static void main(String[] args) {
+        SudokuGenerator generator = new SudokuGenerator(9,20);
+        int matrix[][] = generator.fillValues();
+        System.out.println("Generated Matrix::");
+        generator.printSudoku();
+        Sudoku s = new Sudoku();
+        s.solve(matrix);
 
+        List<List<String>> sudokuMatrix = new ArrayList<List<String>>();
+        for(int i=0;i<9;i++){
+            List<String> rows = new ArrayList<>();
+            for (int j=0;j<9;j++){
+                rows.add(String.valueOf(matrix[i][j]));
+            }
+            sudokuMatrix.add(rows);
+        }
+        System.out.println(sudokuMatrix);
+        JSONObject jsonObject = new JSONObject(sudokuMatrix);
+        System.out.println(jsonObject);
 
     }
 }
