@@ -1,0 +1,25 @@
+
+
+
+#grid{
+  border: 1px solid black;
+  height: 450px;
+  width: 450px;
+}
+
+.row{
+  border: 1px solid black;
+  width:450px;
+  height: 48px;
+}
+
+.cell{
+  width:48px;
+  height:48px;
+  border:1px solid black;
+  display: inline-block;
+}
+
+.btn-add{
+  background-color: blue;
+}

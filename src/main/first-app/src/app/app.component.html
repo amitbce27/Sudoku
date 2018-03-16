@@ -1,0 +1,9 @@
+
+    <div id="grid" >
+      <div *ngFor="let row of [1,2,3,4,5,6,7,8,9]" class="row">
+        <div *ngFor="let col of [1,2,3,4,5,6,7,8,9]" class="cell" (click)="changeColour(row,col)" [ngClass]="{ 'btn-add': isAddButton }">
+
+        </div>
+      </div>
+    </div>
+
